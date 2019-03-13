@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  elastalert:
+    image: sahirabbask/elastalert:latest
+    volumes:
+      - ./config/elastalert.yaml:/opt/elastalert/config.yaml
+      - ./config/elastalert-test.yaml:/opt/elastalert/config-test.yaml
+      - ./config/config.json:/opt/elastalert-server/config/config.json
+      - ./rule_templates:/opt/elastalert/rule_templates
+    network_mode: "host"
+    ports:
+      - 3030:3030
