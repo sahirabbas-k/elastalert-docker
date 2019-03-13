@@ -1,4 +1,4 @@
-# ElastAlert Server Deploy as Docker or Kubernetes pod :whale: :sailboat: :kubernetes:
+# ElastAlert Server Deploy as Docker or Kubernetes pod :whale: :sailboat:
 
 > A server that runs [ElastAlert](https://github.com/Yelp/elastalert) and exposes REST API's for manipulating rules and alerts. It works great in combination with our [ElastAlert Kibana plugin](https://github.com/bitsensor/elastalert-kibana-plugin).
 
