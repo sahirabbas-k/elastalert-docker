@@ -19,7 +19,7 @@ docker run -d -p 3030:3030 \
     -v `pwd`/rules:/opt/elastalert/rules \
     -v `pwd`/rule_templates:/opt/elastalert/rule_templates \
     --net="host" \
-    --name elastalert bitsensor/elastalert:latest
+    --name sahirabbask/elastalert:latest
 ```
 
 OR 
