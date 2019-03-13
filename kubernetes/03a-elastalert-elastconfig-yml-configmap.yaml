@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elast-config
+  namespace: kube-elastalert
+  labels:
+    k8s-app: elastalert
+data:
+  config.yaml: |-
+    es_host: <add your elasticsearch ip here>
+    es_port: <add your elasticsearch port here>
+    rules_folder: rules
+    run_every:
+      seconds: 5
+    buffer_time:
+      minutes: 1
+    writeback_index: elastalert_status
+    alert_time_limit:
+      days: 2

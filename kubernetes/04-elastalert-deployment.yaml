@@ -1,0 +1,45 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: elastalert
+  namespace: kube-elastalert
+  labels:
+   k8s-app: elastalert
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        k8s-app: elastalert
+    spec:
+      serviceAccountName: elastalert
+      containers:
+      - name: elastalert
+        image: sahirabbask/elastalert:latest
+        imagePullPolicy: Always
+        volumeMounts:
+        - name: config
+          mountPath: /opt/elastalert/config.yaml
+          subPath: config.yaml
+        - name: rules
+          mountPath: /opt/elastalert/rules/Test_Critical.yaml
+          subPath: Test_Critical.yaml
+        - name: config-json
+          mountPath: /opt/elastalert-server/config/config.json
+          subPath: config.json
+        - name: rules-example
+          mountPath: /opt/elastalert/rule_templates/Test_Critical.yaml
+          subPath: Test_Critical.yaml
+      volumes:
+        - name: rules
+          configMap:
+            name: logstash-rule
+        - name: config
+          configMap:
+            name: elast-config
+        - name: config-json
+          configMap:
+            name: elast-config-json
+        - name: rules-example
+          configMap:
+            name: logstash-rule-example

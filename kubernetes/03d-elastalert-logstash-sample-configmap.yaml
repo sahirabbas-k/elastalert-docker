@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: logstash-rule-example
+  namespace: kube-elastalert
+  labels:
+    k8s-app: elastalert
+data:
+  Test_Critical.yaml: |-
+    es_host: <add your elasticsearch ip here>
+    es_port: <add your elastic search port here>
+
+    name: Test_Error_Critical
+    type: any
+
+    index: logstash-*
+
+    filter:
+      - query:
+          query_string:
+            query: "message: critical"
+
+    include:
+      - "message"
+
+    alert:
+      - "slack"
+
+    slack_webhook_url: "<add your slack webhook url here>"
